@@ -11,9 +11,10 @@ temp_list= []
 table_rows = star_table.find_all('tr')
 for tr in table_rows:
     td = tr.find_all('td')
-    row = [i.text.rstrip() for i in td]
-    temp_list.append(row)
-
+    for i in td:
+      row = [i.text.rstrip()]
+      temp_list.append(row)
+# print(temp_list)
 # name = headers[0]
 # distance = headers[1]
 # mass = headers[2]
@@ -32,7 +33,8 @@ for tr in table_rows:
     # radius.append(temp_list[i][6])
     # luminos.append(temp_list[i][7])
 
-with open("scraper.csv","w") as f:
+with open("scraper.csv","a+",encoding="utf-8") as f:
     csvwriter = csv.writer(f)
     csvwriter.writerow(headers)
+    print(temp_list)
     csvwriter.writerows(temp_list)
